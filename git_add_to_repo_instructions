@@ -1,0 +1,11 @@
+  454  mkdir mac-git/mlog2
+  455  cd mac-git/mlog2
+  456  git init
+  479  git add README.md 
+  480  git commit -a -m "first commit"
+  482  git remote add origin https://github.com/sundarg8/mlog2.git
+  483  git push -u origin master
+  485  git status
+  532  cd ../../mac-git
+  549  hi git
+

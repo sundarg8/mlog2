@@ -1,0 +1,799 @@
+## README ####
+Basic Docker Commands and container logs:
+ Docker Tutorial 1to4 - More Run With a Couple of Extra Goodies  By Docker(YT-Channel)
+ https://www.youtube.com/watch?v=ZgjHM1XmAKI&index=4&list=PLkA60AVN3hh_6cAz8TUGtkYbJSL2bdZ4h
+## end-README ####
+
+SUNDARA-M-20TX:~ $
+
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker-machine -v
+docker-machine version 0.10.0, build 76ed2a6
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker -v
+Docker version 17.03.1-ce, build c6d412e
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker version
+Client:
+ Version:      17.03.1-ce
+ API version:  1.27
+ Go version:   go1.7.5
+ Git commit:   c6d412e
+ Built:        Tue Mar 28 00:40:02 2017
+ OS/Arch:      darwin/amd64
+
+Server:
+ Version:      17.03.1-ce
+ API version:  1.27 (minimum version 1.12)
+ Go version:   go1.7.5
+ Git commit:   c6d412e
+ Built:        Fri Mar 24 00:00:50 2017
+ OS/Arch:      linux/amd64
+ Experimental: true
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker info  | head
+Containers: 0
+ Running: 0
+ Paused: 0
+ Stopped: 0
+Images: 2
+Server Version: 17.03.1-ce
+Storage Driver: overlay2
+ Backing Filesystem: extfs
+ Supports d_type: true
+ Native Overlay Diff: true
+SUNDARA-M-20TX:~ $  docker images
+REPOSITORY	    TAG 		IMAGE ID	    CREATED		SIZE
+busybox 	    latest		00f017a8c2a6	    7 weeks ago 	1.11 MB
+hello-world	    latest		48b5124b2768	    3 months ago	1.84 kB
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker run hello-worl
+Unable to find image 'hello-worl:latest' locally
+^C
+SUNDARA-M-20TX:~ $  docker run hello-world
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://cloud.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/engine/userguide/
+
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+SUNDARA-M-20TX:~ $  docker ps -a
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS			   PORTS	       NAMES
+8f1d22470d7c	    hello-world 	"/hello"	    7 seconds ago	Exited (0) 6 seconds ago		       sleepy_archimedes
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker run busybox
+SUNDARA-M-20TX:~ $  docker ps -a
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS			    PORTS		NAMES
+2fe29076c32e	    busybox		"sh"		    5 seconds ago	Exited (0) 4 seconds ago			inspiring_jang
+8f1d22470d7c	    hello-world 	"/hello"	    34 seconds ago	Exited (0) 32 seconds ago			sleepy_archimedes
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker run-busybox -it bash
+container_linux.go:247: starting container process caused "exec: \"-it\": executable file not found in $PATH"
+docker: Error response from daemon: oci runtime error: container_linux.go:247: starting container process caused "exec: \"-it\": executable file not found in $PATH".
+SUNDARA-M-20TX:~ $  docker 1@n busybox -it bash
+/ # pwd
+/
+/ # ls
+bin   dev   etc   home	proc  root  sys   tmp	usr   var
+/ # SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  GGGG <ctrl-P> <Ctrl-Q>  to enter detached mode
+bash: syntax error near unexpected token `<'
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker ps -a
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		 STATUS 			 PORTS		     NAMES
+786fd54a7246	    busybox		"sh"		    44 seconds ago	 Up 43 seconds					     distracted_bardeen
+dd66f7136cb0	    busybox		"-it bash"	    54 seconds ago	 Created					     zen_stallman
+2fe29076c32e	    busybox		"sh"		    About a minute ago	 Exited (0) About a minute ago			     inspiring_jang
+8f1d22470d7c	    hello-world 	"/hello"	    About a minute ago	 Exited (0) About a minute ago			     sleepy_archimedes
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+786fd54a7246	    busybox		"sh"		    47 seconds ago	Up 45 seconds				distracted_bardeen
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+786fd54a7246	    busybox		"sh"		    57 seconds ago	Up 56 seconds				distracted_bardeen
+SUNDARA-M-20TX:~ $  docker ps -a
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		 STATUS 			 PORTS		     NAMES
+786fd54a7246	    busybox		"sh"		    59 seconds ago	 Up 58 seconds					     distracted_bardeen
+dd66f7136cb0	    busybox		"-it bash"	    About a minute ago	 Created					     zen_stallman
+2fe29076c32e	    busybox		"sh"		    About a minute ago	 Exited (0) About a minute ago			     inspiring_jang
+8f1d22470d7c	    hello-world 	"/hello"	    2 minutes ago	 Exited (0) 2 minutes ago			     sleepy_archimedes
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker run -d busybox
+e8da6b9633765a62a4b5c02fe65e900bcc5834b68cc61a098204424cabf9a804
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker ps -a
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		 STATUS 			 PORTS		     NAMES
+e8da6b963376	    busybox		"sh"		    5 seconds ago	 Exited (0) 3 seconds ago			     stoic_spence
+786fd54a7246	    busybox		"sh"		    About a minute ago	 Up About a minute				     distracted_bardeen
+dd66f7136cb0	    busybox		"-it bash"	    About a minute ago	 Created					     zen_stallman
+2fe29076c32e	    busybox		"sh"		    About a minute ago	 Exited (0) About a minute ago			     inspiring_jang
+8f1d22470d7c	    hello-world 	"/hello"	    2 minutes ago	 Exited (0) 2 minutes ago			     sleepy_archimedes
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker ps -a
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		 STATUS 	     PORTS		 NAMES
+786fd54a7246	    busybox		"sh"		    About a minute ago	 Up About a minute			 distracted_bardeen
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  dockerrun--d-itbbusybox
+d91aa7530bdbfe34e4ba9e772647e62f075e8a66d2c3cd6251f0b84b224ef41c
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker psn -d -it busybox
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		 STATUS 	     PORTS		 NAMES
+d91aa7530bdb	    busybox		"sh"		    2 seconds ago	 Up 1 second				 objective_leakey
+786fd54a7246	    busybox		"sh"		    About a minute ago	 Up About a minute			 distracted_bardeen
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker run -d -it busybox
+2400872f408cb116088098602712e76fe137491d427b8d4d776f4d106d64723b
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker psn -d -it busybox
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		 STATUS 	     PORTS		 NAMES
+2400872f408c	    busybox		"sh"		    4 seconds ago	 Up 2 seconds				 adoring_kilby
+d91aa7530bdb	    busybox		"sh"		    22 seconds ago	 Up 20 seconds				 objective_leakey
+786fd54a7246	    busybox		"sh"		    About a minute ago	 Up About a minute			 distracted_bardeen
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker run--d busyboxybox
+27b9bc5f16e7b6470729c2a7c07a0d2ee41d1759f88373785d7ad2f7591f5c22
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker psn -d busybox
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		 STATUS 	     PORTS		 NAMES
+2400872f408c	    busybox		"sh"		    11 seconds ago	 Up 10 seconds				 adoring_kilby
+d91aa7530bdb	    busybox		"sh"		    29 seconds ago	 Up 28 seconds				 objective_leakey
+786fd54a7246	    busybox		"sh"		    About a minute ago	 Up About a minute			 distracted_bardeen
+SUNDARA-M-20TX:~ $
+modeARA-M-20TX:~ $  GGGGGG busybox ran and ended.. even thouhKg hKKh we started with bK detached
+bash: GGGGGG: command not found
+SUNDARA-M-20TX:~ $  docker attach objective_leakey
+/ # ls
+bin   dev   etc   home	proc  root  sys   tmp	usr   var
+/ # SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		 STATUS 	     PORTS		 NAMES
+2400872f408c	    busybox		"sh"		    52 seconds ago	 Up 50 seconds				 adoring_kilby
+d91aa7530bdb	    busybox		"sh"		    About a minute ago	 Up About a minute			 objective_leakey
+786fd54a7246	    busybox		"sh"		    2 minutes ago	 Up 2 minutes				 distracted_bardeen
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  cid = $(docker run -itd busybox)
+bash: cid: command not found
+SUNDARA-M-20TX:~ $  cid = $(docker run -itd busybox)
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  GGG no space on either side of = in the above cmdmd
+bash: GGG: command not found
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		 STATUS 	     PORTS		 NAMES
+1510dca9261c	    busybox		"sh"		    19 seconds ago	 Up 18 seconds				 quizzical_elion
+5667d4daf4a3	    busybox		"sh"		    42 seconds ago	 Up 41 seconds				 elated_minsky
+2400872f408c	    busybox		"sh"		    About a minute ago	 Up About a minute			 adoring_kilby
+d91aa7530bdb	    busybox		"sh"		    2 minutes ago	 Up 2 minutes				 objective_leakey
+786fd54a7246	    busybox		"sh"		    3 minutes ago	 Up 3 minutes				 distracted_bardeen
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  echo $cid
+1510dca9261cbf240062a2104383d644f126b03790712528719f15a34c8a0e57
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker inspect $cid | hhead
+[
+    {
+	"Id": "1510dca9261cbf240062a2104383d644f126b03790712528719f15a34c8a0e57",
+	"Created": "2017-05-01T01:34:33.138938252Z",
+	"Path": "sh",
+	"Args": [],
+	"State": {
+	    "Status": "running",
+	    "Running": true,
+	    "Paused": false,
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker stop $cid
+
+1510dca9261cbf240062a2104383d644f126b03790712528719f15a34c8a0e57
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+5667d4daf4a3	    busybox		"sh"		    2 minutes ago	Up About a minute			elated_minsky
+2400872f408c	    busybox		"sh"		    3 minutes ago	Up 3 minutes				adoring_kilby
+d91aa7530bdb	    busybox		"sh"		    3 minutes ago	Up 3 minutes				objective_leakey
+786fd54a7246	    busybox		"sh"		    5 minutes ago	Up 4 minutes				distracted_bardeen
+SUNDARA-M-20TX:~ $  docker stop 5667d4daf4a3
+5667d4daf4a3
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+2400872f408c	    busybox		"sh"		    3 minutes ago	Up 3 minutes				adoring_kilby
+d91aa7530bdb	    busybox		"sh"		    3 minutes ago	Up 3 minutes				objective_leakey
+786fd54a7246	    busybox		"sh"		    5 minutes ago	Up 5 minutes				distracted_bardeen
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  GGGGGG  docker stop is slow. as it is trying to do graceful exit
+bash: GGGGGG: command not found
+SUNDARA-M-20TX:~ $  #GGGGG  docker kill is a fasterrungraceful exit
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker kill adoring_kilby
+adoring_kilby
+SUNDARA-M-20TX:~ $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+d91aa7530bdb	    busybox		"sh"		    4 minutes ago	Up 4 minutes				objective_leakey
+786fd54a7246	    busybox		"sh"		    6 minutes ago	Up 6 minutes				distracted_bardeen
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker run -itd --name=john1 busybox
+ba55972f6caccf3773bd8536f891e42fea54731c68ff14326411e9ec4c370a54
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+ba55972f6cac	    busybox		"sh"		    3 seconds ago	Up 1 second				john1
+d91aa7530bdb	    busybox		"sh"		    5 minutes ago	Up 5 minutes				objective_leakey
+786fd54a7246	    busybox		"sh"		    6 minutes ago	Up 6 minutes				distracted_bardeen
+SUNDARA-M-20TX:~ $  docker ps -q
+ba55972f6cac
+d91aa7530bdb
+786fd54a7246
+SUNDARA-M-20TX:~ $  docker ps -aq
+ba55972f6cac
+1510dca9261c
+5667d4daf4a3
+27b9bc5f16e7
+2400872f408c
+d91aa7530bdb
+e8da6b963376
+786fd54a7246
+dd66f7136cb0
+2fe29076c32e
+8f1d22470d7c
+SUNDARA-M-20TX:~ $  docker images
+REPOSITORY	    TAG 		IMAGE ID	    CREATED		SIZE
+busybox 	    latest		00f017a8c2a6	    7 weeks ago 	1.11 MB
+hello-world	    latest		48b5124b2768	    3 months ago	1.84 kB
+SUNDARA-M-20TX:~ $  docker rm john1
+Error response from daemon: You cannot remove a running container ba55972f6caccf3773bd8536f891e42fea54731c68ff14326411e9ec4c370a54. Stop the container before attempting removal or use -f
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker
+SUNDARA-M-20TX:~ $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		 STATUS 	     PORTS		 NAMES
+ba55972f6cac	    busybox		"sh"		    About a minute ago	 Up About a minute			 john1
+d91aa7530bdb	    busybox		"sh"		    6 minutes ago	 Up 6 minutes				 objective_leakey
+786fd54a7246	    busybox		"sh"		    7 minutes ago	 Up 7 minutes				 distracted_bardeen
+SUNDARA-M-20TX:~ $  docker exec john1 ls /
+bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+SUNDARA-M-20TX:~ $  docker kill $(docker ps -q)
+ba55972f6cac
+d91aa7530bdb
+786fd54a7246
+SUNDARA-M-20TX:~ $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker ps -a
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS			     PORTS		 NAMES
+ba55972f6cac	    busybox		"sh"		    2 minutes ago	Exited (137) 5 seconds ago			 john1
+1510dca9261c	    busybox		"sh"		    5 minutes ago	Exited (137) 4 minutes ago			 quizzical_elion
+5667d4daf4a3	    busybox		"sh"		    6 minutes ago	Exited (137) 3 minutes ago			 elated_minsky
+27b9bc5f16e7	    busybox		"sh"		    7 minutes ago	Exited (0) 7 minutes ago			 elastic_bose
+2400872f408c	    busybox		"sh"		    7 minutes ago	Exited (137) 2 minutes ago			 adoring_kilby
+d91aa7530bdb	    busybox		"sh"		    7 minutes ago	Exited (137) 5 seconds ago			 objective_leakey
+e8da6b963376	    busybox		"sh"		    7 minutes ago	Exited (0) 7 minutes ago			 stoic_spence
+786fd54a7246	    busybox		"sh"		    9 minutes ago	Exited (137) 5 seconds ago			 distracted_bardeen
+dd66f7136cb0	    busybox		"-it bash"	    9 minutes ago	Created 					 zen_stallman
+2fe29076c32e	    busybox		"sh"		    9 minutes ago	Exited (0) 9 minutes ago			 inspiring_jang
+8f1d22470d7c	    hello-world 	"/hello"	    10 minutes ago	Exited (0) 10 minutes ago			 sleepy_archimedes
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker killa$(docker ps -aq)
+Error response from daemon: Cannot kill container ba55972f6cac: Container ba55972f6caccf3773bd8536f891e42fea54731c68ff14326411e9ec4c370a54 is not running
+Error response from daemon: Cannot kill container 1510dca9261c: Container 1510dca9261cbf240062a2104383d644f126b03790712528719f15a34c8a0e57 is not running
+Error response from daemon: Cannot kill container 5667d4daf4a3: Container 5667d4daf4a3c21477aece7dce8ac90b0351ea3b57a825679fa20bad0bbfde39 is not running
+Error response from daemon: Cannot kill container 27b9bc5f16e7: Container 27b9bc5f16e7b6470729c2a7c07a0d2ee41d1759f88373785d7ad2f7591f5c22 is not running
+Error response from daemon: Cannot kill container 2400872f408c: Container 2400872f408cb116088098602712e76fe137491d427b8d4d776f4d106d64723b is not running
+Error response from daemon: Cannot kill container d91aa7530bdb: Container d91aa7530bdbfe34e4ba9e772647e62f075e8a66d2c3cd6251f0b84b224ef41c is not running
+Error response from daemon: Cannot kill container e8da6b963376: Container e8da6b9633765a62a4b5c02fe65e900bcc5834b68cc61a098204424cabf9a804 is not running
+Error response from daemon: Cannot kill container 786fd54a7246: Container 786fd54a7246550c1af22fe5feec073ba9b4ed1a94311c4ea51c732273e1cf79 is not running
+Error response from daemon: Cannot kill container dd66f7136cb0: Container dd66f7136cb0465ca1dec5604bb68a0124d73b41acb7d974b3d7b10fa5e30f58 is not running
+Error response from daemon: Cannot kill container 2fe29076c32e: Container 2fe29076c32ef70bf04eb783dc3a7d1214f6ac3758ac1778f52c4b1c8739ee5e is not running
+Error response from daemon: Cannot kill container 8f1d22470d7c: Container 8f1d22470d7cb90a400ffd189898250ab0a498e7c2908454e4ecd45ba606b148 is not running
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker killa$(docker ps -aq)
+ba55972f6cac
+1510dca9261c
+5667d4daf4a3
+27b9bc5f16e7
+2400872f408c
+d91aa7530bdb
+e8da6b963376
+786fd54a7246
+dd66f7136cb0
+2fe29076c32e
+8f1d22470d7c
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker ps -a
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $
+SUNDARA-M-20TX:~ $  docker images
+REPOSITORY	    TAG 		IMAGE ID	    CREATED		SIZE
+busybox 	    latest		00f017a8c2a6	    7 weeks ago 	1.11 MB
+hello-world	    latest		48b5124b2768	    3 months ago	1.84 kB
+SUNDARA-M-20TX:~ $  pwd
+/Users/sundara 1
+SUNDARA-M-20TX:~ $  cd Documents/2016/mac-docker/script_logs/
+SUNDARA-M-20TX:script_logs $  ls
+r1_apr17_log1.txt
+SUNDARA-M-20TX:script_logs $  mkdir john2
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker run -it --name john1 -v /john2 busybox
+/ # cd /john2/
+/john2 # ls
+/john2 # touch file4
+/john2 # SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  ls
+john2		  r1_apr17_log1.txt
+SUNDARA-M-20TX:script_logs $  cd john2/
+SUNDARA-M-20TX:john2 $	ls
+SUNDARA-M-20TX:john2 $	ls
+SUNDARA-M-20TX:john2 $
+SUNDARA-M-20TX:john2 $	ls
+SUNDARA-M-20TX:john2 $	pwd
+/Users/sundara 1/Documents/2016/mac-docker/script_logs/john2
+SUNDARA-M-20TX:john2 $	touch file5
+SUNDARA-M-20TX:john2 $	docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+ee9982a8c6c5	    busybox		"sh"		    49 seconds ago	Up 47 seconds				john1
+SUNDARA-M-20TX:john2 $	docker attach john1
+/john2 # ls
+file4
+/john2 # pwd
+/john2
+/john2 # ls
+file4
+/john2 # touchffile6
+/john2 #
+/john2 # SUNDARA-M-20TX:john2 $
+SUNDARA-M-20TX:john2 $
+SUNDARA-M-20TX:john2 $	lsdchrfile5ch john1
+SUNDARA-M-20TX:john2 $
+SUNDARA-M-20TX:john2 $	docker run -it --name john2 --volumes-from john1 busybox
+/ #
+/ # cd/john2/
+/john2 # ls
+file4  file6
+/john2 # touch file7
+/john2 # SUNDARA-M-20TX:john2 $
+SUNDARA-M-20TX:john2 $	docker attach john1
+/john2 #
+/john2 # ls
+file4  file6  file7
+/john2 #
+/john2 # SUNDARA-M-20TX:john2 $
+SUNDARA-M-20TX:john2 $
+SUNDARA-M-20TX:john2 $	docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+e579368a09ab	    busybox		"sh"		    40 seconds ago	Up 39 seconds				john2
+ee9982a8c6c5	    busybox		"sh"		    2 minutes ago	Up 2 minutes				john1
+SUNDARA-M-20TX:john2 $
+SUNDARA-M-20TX:john2 $
+SUNDARA-M-20TX:john2 $	!556
+docker kill $(docker ps -aq)
+e579368a09ab
+ee9982a8c6c5
+SUNDARA-M-20TX:john2 $
+SUNDARA-M-20TX:john2 $
+SUNDARA-M-20TX:john2 $	!557
+docker rm $(docker ps -aq)
+e579368a09ab
+ee9982a8c6c5
+SUNDARA-M-20TX:john2 $
+SUNDARA-M-20TX:john2 $
+SUNDARA-M-20TX:john2 $	docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+SUNDARA-M-20TX:john2 $	docker ps -a
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+SUNDARA-M-20TX:john2 $
+SUNDARA-M-20TX:john2 $	exit
+exit
+Script started on Sun Apr 30 18:29:10 2017
+
+Script done on Sun Apr 30 18:44:06 2017
+SUNDARA-M-20TX:script_logs $  docker search -s 10 ubuntu
+Flag --stars has been deprecated, use --filter=stars=3 instead
+NAME			   DESCRIPTION					   STARS     OFFICIAL	AUTOMATED
+ubuntu			   Ubuntu is a Debian-based Linux operating s...   5927      [OK]
+rastasheep/ubuntu-sshd	   Dockerized SSH service, built on top of of...   81			[OK]
+ubuntu-upstart		   Upstart is an event-based replacement for ...   71	     [OK]
+ubuntu-debootstrap	   debootstrap --variant=minbase --components...   30	     [OK]
+torusware/speedus-ubuntu   Always updated official Ubuntu docker imag...   27			[OK]
+nuagebec/ubuntu 	   Simple always updated Ubuntu docker images...   20			[OK]
+nickistre/ubuntu-lamp	   LAMP server on Ubuntu			   17			[OK]
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker images
+REPOSITORY	    TAG 		IMAGE ID	    CREATED		SIZE
+busybox 	    latest		00f017a8c2a6	    7 weeks ago 	1.11 MB
+hello-world	    latest		48b5124b2768	    3 months ago	1.84 kB
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker pull ubuntu
+Using default tag: latest
+latest: Pulling from library/ubuntu
+
+aafe6b5e13de: Pulling fs layer
+0a2b43a72660: Pulling fs layer
+18bdd1e546d2: Pulling fs layer
+8198342c3e05: Pulling fs layer
+Digest:4sha256:f3a61450ae43896c4332bda5e78b453f4a93179045f20c8181043b26b5e7902846.161MB/1617B9MBB
+Status: Downloaded newer image for ubuntu:latest
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker images
+REPOSITORY	    TAG 		IMAGE ID	    CREATED		SIZE
+ubuntu		    latest		f7b3f317ec73	    6 days ago		117 MB
+busybox 	    latest		00f017a8c2a6	    7 weeks ago 	1.11 MB
+hello-world	    latest		48b5124b2768	    3 months ago	1.84 kB
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker run -itd ubuntu
+617e0059e3f0a5709ebebf54907edd55fe50d597478497267fd1c62306e70878
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+617e0059e3f0	    ubuntu		"/bin/bash"	    4 seconds ago	Up 3 seconds				elastic_payne
+SUNDARA-M-20TX:script_logs $  docker history elastic_payne
+Error response from daemon: no such id: elastic_payne
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker history 617e0059e3f0e
+Error response from daemon: no such id: 617e0059e3f0
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker images
+REPOSITORY	    TAG 		IMAGE ID	    CREATED		SIZE
+ubuntu		    latest		f7b3f317ec73	    6 days ago		117 MB
+busybox 	    latest		00f017a8c2a6	    7 weeks ago 	1.11 MB
+hello-world	    latest		48b5124b2768	    3 months ago	1.84 kB
+SUNDARA-M-20TX:script_logs $  docker history f7b3f317ec73
+IMAGE		    CREATED		CREATED BY					SIZE		    COMMENT
+f7b3f317ec73	    6 days ago		/bin/sh -c #(nop)  CMD ["/bin/bash"]		0 B
+<missing>	    6 days ago		/bin/sh -c mkdir -p /run/systemd && echo '...	7 B
+<missing>	    6 days ago		/bin/sh -c sed -i 's/^#\s*\(deb.*universe\...	2.76 kB
+<missing>	    6 days ago		/bin/sh -c rm -rf /var/lib/apt/lists/*		0 B
+<missing>	    6 days ago		/bin/sh -c set -xe   && echo '#!/bin/sh' >...	745 B
+<missing>	    6 days ago		/bin/sh -c #(nop) ADD file:141408db9037263...	117 MB
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker runt-itdeubuntu_/bin/sh
+f3daa6206b44047d5f26f1854bf4d95e24e3f802a0bfe96f028a5d18b2e56135
+SUNDARA-M-20TX:script_logs $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		 STATUS 	     PORTS		 NAMES
+f3daa6206b44	    ubuntu		"/bin/sh"	    3 seconds ago	 Up 1 second				 thirsty_jennings
+617e0059e3f0	    ubuntu		"/bin/bash"	    About a minute ago	 Up About a minute			 elastic_payne
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker run -itd ubuntu unames-a
+2ef623d28103d453f050e933392db55aca43cdb596c8634af55e1518e6bea253
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker psn -itd ubuntu /bin/sha
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		 STATUS 	     PORTS		 NAMES
+f3daa6206b44	    ubuntu		"/bin/sh"	    17 seconds ago	 Up 15 seconds				 thirsty_jennings
+617e0059e3f0	    ubuntu		"/bin/bash"	    About a minute ago	 Up About a minute			 elastic_payne
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker ps -a
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		 STATUS 		     PORTS		 NAMES
+2ef623d28103	    ubuntu		"uname -a"	    14 seconds ago	 Exited (0) 13 seconds ago			 condescending_poincare
+f3daa6206b44	    ubuntu		"/bin/sh"	    26 seconds ago	 Up 25 seconds					 thirsty_jennings
+617e0059e3f0	    ubuntu		"/bin/bash"	    About a minute ago	 Up About a minute				 elastic_payne
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker logs 2ef623d28103
+Linux 2ef623d28103 4.9.13-moby #1 SMP Sat Mar 25 02:48:44 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker run--itd6ubuntu0sleep 10 && watch docker ps
+03cb7fa534647f632dc9abd8d8f91d5e6b222fcda7ec417511c0da6f30891041
+bash: watch: command not found
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker kill $(docker ps -q) && docker rm $(docker ps -aq)
+f3daa6206b44
+617e0059e3f0
+03cb7fa53464
+2ef623d28103
+f3daa6206b44
+617e0059e3f0
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker ps -a
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  pwd
+/Users/sundara 1/Documents/2016/mac-docker/script_logs
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  exit
+exit
+Script started on Sun Apr 30 19:40:44 2017
+
+Script done on Sun Apr 30 19:53:19 2017
+Script started on Sun Apr 30 19:58:27 2017
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker run -itd --name job1 ubuntu /bin/sh -c "while true; do echo Docker Rocks; sleep 1;;done"
+eaf156b875e66c0fea6af35a162c93276bb3bba60ac7767207c588ac6b114842
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 		 CREATED	     STATUS		 PORTS		     NAMES
+eaf156b875e6	    ubuntu		"/bin/sh -c 'while..."	 5 seconds ago	     Up 4 seconds			     job1
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker logs -h
+Flag shorthand -h has been deprecated, please use --help
+
+Usage:	docker logs [OPTIONS] CONTAINER
+
+Fetch the logs of a container
+
+Options:
+      --details        Show extra details provided to logs
+  -f, --follow	       Follow log output
+      --help	       Print usage
+      --since string   Show logs since timestamp
+      --tail string    Number of lines to show from the end of the logs (default "all")
+  -t, --timestamps     Show timestamps
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker logs -ft job1
+2017-05-01T03:01:59.032526852Z Docker Rocks
+2017-05-01T03:02:00.034024926Z Docker Rocks
+2017-05-01T03:02:01.037333336Z Docker Rocks
+2017-05-01T03:02:02.042623177Z Docker Rocks
+2017-05-01T03:02:03.045425293Z Docker Rocks
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 		 CREATED	      STATUS		  PORTS 	      NAMES
+eaf156b875e6	    ubuntu		"/bin/sh -c 'while..."	 About a minute ago   Up About a minute 		      job1
+SUNDARA-M-20TX:script_logs $  docker kill job1
+job1
+SUNDARA-M-20TX:script_logs $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker runs-itd1--name job1 ubuntu /bin/sh -c "while true; do echo Docker Rocks; sleep1@3 done"
+docker: Error response from daemon: Conflict. The container name "/job1" is already in use by container eaf156b875e66c0fea6af35a162c93276bb3bba60ac7767207c588ac6b114842. You have to remove (or rename) that container to be able to reuse that name..
+See 'docker run --help'.
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker rm job1
+job1
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+runD-itdM--namesjob1tubuntu$/bin/shr-cu"while true;edooechobDockerbRocks;-sleepi3; done" do echo Docker Rocks; sleep 3; done"
+218da52788ead31e96aa6f5ae5e8fc1b7ec89aafb6d1a92009a9585596e5dd44
+SUNDARA-M-20TX:script_logs $
+logsi-ft1job1e:job1pubuntu /bin/she-cr"whiledtrue;mdojechouDocker/Rocks; sleeph3;edone"; do echo Docker Rocks; sleep 3; done"
+2017-05-01T03:04:31.494260853Z Docker Rocks
+2017-05-01T03:04:34.498533926Z Docker Rocks
+2017-05-01T03:04:37.499973287Z Docker Rocks
+2017-05-01T03:04:40.506176752Z Docker Rocks
+^C
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker kill $(docker ps -lq)
+218da52788ea
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs1@  docker kill $(docker ps -lq)
+218da52788ea
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  GGGG lastkkill / rm fof docker container
+bash: GGGG: command not found
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker ps -a
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+runs-itdl--namecjob1pubuntu$/bin/shl-ct"while/true;ododechorDockeriRocks; sleep 3; done"
+0fa1bb2c29a2335c306d5970db712209f15b331ae6b8cf7407741e6b5d39b472
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker stats job1
+CONTAINER	    CPU %		MEM USAGE / LIMIT     MEM %		  NET I/O	      BLOCK I/O 	  PIDS
+job1		    0.00%		696 KiB / 5.818 GiB   0.01%		  578 B / 578 B       0 B / 0 B 	  2
+CONTAINER	    CPU %		MEM USAGE / LIMIT     MEM %		  NET I/O	      BLOCK I/O 	  PIDS
+job1		    0.00%		696 KiB / 5.818 GiB   0.01%		  578 B / 578 B       0 B / 0 B 	  2
+CONTAINER	    CPU %		MEM USAGE / LIMIT     MEM %		  NET I/O	      BLOCK I/O 	  PIDS
+job1		    0.00%		696 KiB / 5.818 GiB   0.01%		  578 B / 578 B       0 B / 0 B 	  2
+CONTAINER	    CPU %		MEM USAGE / LIMIT     MEM %		  NET I/O	      BLOCK I/O 	  PIDS
+job1		    0.00%		696 KiB / 5.818 GiB   0.01%		  578 B / 578 B       0 B / 0 B 	  2
+CONTAINER	    CPU %		MEM USAGE / LIMIT     MEM %		  NET I/O	      BLOCK I/O 	  PIDS
+^C
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+statsRjob120TX:script_logs $  docker runt-itdb--name job1 ubuntu /bin/sh -c "while true; do echo Docker Rocks; sleep 3; done"
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  GGGGG docker stats is like  docker top
+bash: GGGGG: command not found
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker top job2 -ef
+Error response from daemon: No such container: job2
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker top job1--ef
+PID		    USER		TIME		    COMMAND
+8306		    root		0:00		    /bin/sh -c while true; do echo Docker Rocks; sleep 3; done
+8398		    root		0:00		    sleep 3
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker top job1 -ef
+PID		    USER		TIME		    COMMAND
+8306		    root		0:00		    /bin/sh -c while true; do echo Docker Rocks; sleep 3; done
+8410		    root		0:00		    sleep 3
+SUNDARA-M-20TX:script_logs $  docker top job1 -ef
+PID		    USER		TIME		    COMMAND
+8306		    root		0:00		    /bin/sh -c while true; do echo Docker Rocks; sleep 3; done
+8417		    root		0:00		    sleep 3
+SUNDARA-M-20TX:script_logs $  docker top job1 -ef
+PID		    USER		TIME		    COMMAND
+8306		    root		0:00		    /bin/sh -c while true; do echo Docker Rocks; sleep 3; done
+8424		    root		0:00		    sleep 3
+SUNDARA-M-20TX:script_logs $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 		 CREATED	      STATUS		  PORTS 	      NAMES
+0fa1bb2c29a2	    ubuntu		"/bin/sh -c 'while..."	 About a minute ago   Up About a minute 		      job1
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 		 CREATED	     STATUS		 PORTS		     NAMES
+0fa1bb2c29a2	    ubuntu		"/bin/sh -c 'while..."	 4 minutes ago	     Up 4 minutes			     job1
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker inspect --format '{{.Name}} {{.State.Running}}' job1
+/job1 true
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker ps -a
+CONTAINER ID	    IMAGE		COMMAND 		 CREATED	     STATUS		 PORTS		     NAMES
+0fa1bb2c29a2	    ubuntu		"/bin/sh -c 'while..."	 5 minutes ago	     Up 5 minutes			     job1
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker run hello-world
+
+Hello from Docker!
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker psn-aello-world
+CONTAINER ID	    IMAGE		COMMAND 		 CREATED	     STATUS			PORTS		    NAMES
+06dda6625290	    hello-world 	"/hello"		 4 seconds ago	     Exited (0) 2 seconds ago			    nervous_shockley
+0fa1bb2c29a2	    ubuntu		"/bin/sh -c 'while..."	 6 minutes ago	     Up 6 minutes				    job1
+SUNDARA-M-20TX:script_logs $  docker inspectl--format '{{.Name}} {{.State.Running}}' nervous_shockley
+/nervous_shockley false
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker inspect job1 | head
+[
+    {
+	"Id": "0fa1bb2c29a2335c306d5970db712209f15b331ae6b8cf7407741e6b5d39b472",
+	"Created": "2017-05-01T03:06:50.755641314Z",
+	"Path": "/bin/sh",
+	"Args": [
+	    "-c",
+	    "while true; do echo Docker Rocks; sleep 3; done"
+	],
+	"State": {
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+dockerdrunt-itdb--nameljob1$ubuntut/bin/shn-c}"whilettrue;Ndoeecho{Docker.Rocks;gsleepe3;odone"ockley
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker run -itd --name job4 --label=NodeNumber=3 --label=NodeType=cluster ubuntu
+58bd909a4297236a720dbb9223a6684959a53f8404e68c57fa9cff6a0a98234c
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 		 CREATED	     STATUS		 PORTS		     NAMES
+58bd909a4297	    ubuntu		"/bin/bash"		 6 seconds ago	     Up 5 seconds			     job4
+0fa1bb2c29a2	    ubuntu		"/bin/sh -c 'while..."	 7 minutes ago	     Up 7 minutes			     job1
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker inspect job4 > test.out
+SUNDARA-M-20TX:script_logs $  grep NodeNumber test.out
+		"NodeNumber": "3",
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  gre-ALabelsttest.outtout
+	    "Labels": {
+		"NodeNumber": "3",
+		"NodeType": "cluster"
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker inspect --format '{{.Name}} {{.Config.Labels.NodeType}}' job4
+/job4 cluster
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 		 CREATED	     STATUS		 PORTS		     NAMES
+58bd909a4297	    ubuntu		"/bin/bash"		 3 minutes ago	     Up 3 minutes			     job4
+0fa1bb2c29a2	    ubuntu		"/bin/sh -c 'while..."	 11 minutes ago      Up 11 minutes			     job1
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  cid=$(docker run -itd --ulimit nofile=1024:1024 ubuntu)
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  ### GGGG nlimit on number of open files.
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker attache$cid
+root@c9d62e4613a0:/#
+root@c9d62e4613a0:/#
+root@c9d62e4613a0:/#
+root@c9d62e4613a0:/# ulimit
+unlimited
+root@c9d62e4613a0:/# ulimit -a
+core file size		(blocks, -c) 0
+data seg size		(kbytes, -d) unlimited
+scheduling priority		(-e) 0
+file size		(blocks, -f) unlimited
+pending signals 		(-i) 23598
+max locked memory	(kbytes, -l) 82000
+max memory size 	(kbytes, -m) unlimited
+open files			(-n) 1024
+pipe size	     (512 bytes, -p) 8
+POSIX message queues	 (bytes, -q) 819200
+real-time priority		(-r) 0
+stack size		(kbytes, -s) 8192
+cpu time	       (seconds, -t) unlimited
+max user processes		(-u) unlimited
+virtual memory		(kbytes, -v) unlimited
+file locks			(-x) unlimited
+root@c9d62e4613a0:/#
+root@c9d62e4613a0:/# ulimit -a | grep files
+open files			(-n) 1024
+root@c9d62e4613a0:/#
+root@c9d62e4613a0:/#
+root@c9d62e4613a0:/# lk
+root@c9d62e4613a0:/# exit
+exit
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 		 CREATED	     STATUS		 PORTS		     NAMES
+58bd909a4297	    ubuntu		"/bin/bash"		 8 minutes ago	     Up 8 minutes			     job4
+0fa1bb2c29a2	    ubuntu		"/bin/sh -c 'while..."	 16 minutes ago      Up 16 minutes			     job1
+SUNDARA-M-20TX:script_logs $  !496
+docker kill $(docker ps -q) && docker rm $(docker ps -aq)
+58bd909a4297
+0fa1bb2c29a2
+c9d62e4613a0
+58bd909a4297
+06dda6625290
+0fa1bb2c29a2
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker ps -a
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker images
+REPOSITORY	    TAG 		IMAGE ID	    CREATED		SIZE
+ubuntu		    latest		f7b3f317ec73	    6 days ago		117 MB
+busybox 	    latest		00f017a8c2a6	    7 weeks ago 	1.11 MB
+hello-world	    latest		48b5124b2768	    3 months ago	1.84 kB
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  exit
+exit
+
+Script done on Sun Apr 30 20:23:21 2017
