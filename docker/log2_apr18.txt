@@ -1,0 +1,728 @@
+#### README
+####  DOcker machine , Compose, Swarm ...
+#####
+Script started on Mon May  1 07:40:16 2017
+SUNDARA-M-20TX:script_logs $  docker-machine -v
+docker-machine version 0.10.0, build 76ed2a6
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker-machine -v
+docker-machine version 0.10.0, build 76ed2a6
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker-machine ls
+NAME   ACTIVE	DRIVER	 STATE	 URL   SWARM   DOCKER	ERRORS
+SUNDARA-M-20TX:script_logs $  cd ../
+
+SUNDARA-M-20TX:mac-docker $  docker-machine create --driver virtualbox vbdev1
+Creating CA: /Users/sundara 1/.docker/machine/certs/ca.pem
+Creating client certificate: /Users/sundara 1/.docker/machine/certs/cert.pem
+Running pre-create checks...
+(vbdev1) Image cache directory does not exist, creating it at /Users/sundara 1/.docker/machine/cache...
+(vbdev1) No default Boot2Docker ISO found locally, downloading the latest release...
+(vbdev1) Latest release for github.com/boot2docker/boot2docker is v17.04.0-ce
+(vbdev1) Downloading /Users/sundara 1/.docker/machine/cache/boot2docker.iso from https://github.com/boot2docker/boot2docker/releases/download/v17.04.0-ce/boot2docker.iso...
+(vbdev1) 0%....10%....20%....30%....40%....50%....60%....70%....80%....90%....100%
+Creating machine...
+(vbdev1) Copying /Users/sundara 1/.docker/machine/cache/boot2docker.iso to /Users/sundara 1/.docker/machine/machines/vbdev1/boot2docker.iso...
+(vbdev1) Creating VirtualBox VM...
+(vbdev1) Creating SSH key...
+(vbdev1) Starting the VM...
+(vbdev1) Check network to re-create if needed...
+(vbdev1) Waiting for an IP...
+Waiting for machine to be running, this may take a few minutes...
+Detecting operating system of created instance...
+Docker is up and running!
+To see how to connect your Docker Client to the Docker Engine running on this virtual machine, run: docker-machine env vbdev1
+docker-machine:lsc-docker $  docker-machine create --driver virtualbox vbdev1
+NAME	 ACTIVE   DRIVER       STATE	 URL			     SWARM   DOCKER	   ERRORS
+vbdev1	 -	  virtualbox   Running	 tcp://192.168.99.100:2376	     v17.04.0-ce
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+SUNDARA-M-20TX:mac-docker $  docker ps -a
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $  docker-machine ls
+NAME	 ACTIVE   DRIVER       STATE	 URL			     SWARM   DOCKER	   ERRORS
+vbdev1	 -	  virtualbox   Running	 tcp://192.168.99.100:2376	     v17.04.0-ce
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $  docker-machine env dev1
+Host does not exist: "dev1"
+SUNDARA-M-20TX:mac-docker $  docker-machine env vbdev1
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.100:2376"
+export DOCKER_CERT_PATH="/Users/sundara 1/.docker/machine/machines/vbdev1"
+export DOCKER_MACHINE_NAME="vbdev1"
+# Run this command to configure your shell:
+# eval $(docker-machine env vbdev1)
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $ eval "$(docker-machine env vbdev1)"
+docker-machinemlsvidev1v1 vbdev1" "$docker-machineeenvvvbdev1")"
+NAME	 ACTIVE   DRIVER       STATE	 URL			     SWARM   DOCKER	   ERRORS
+vbdev1	 *	  virtualbox   Running	 tcp://192.168.99.100:2376	     v17.04.0-ce
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.100:2376"
+export DOCKER_CERT_PATH="/Users/sundara 1/.docker/machine/machines/vbdev1"
+export DOCKER_MACHINE_NAME="vbdev1"
+# Run this command to configure your shell:
+# eval $(docker-machine env vbdev1)
+SUNDARA-M-20TX:mac-docker $  docker-machine env vbdev1
+SUNDARA-M-20TX:mac-docker $  eval "$(docker-machine env vbdev1)"
+SUNDARA-M-20TX:mac-docker $
+ocker-machlsee:env-vbdev1 $  eval "$(docker-machine env vbdev1)"
+NAME	 ACTIVE   DRIVER       STATE	 URL			     SWARM   DOCKER	   ERRORS
+vbdev1	 *	  virtualbox   Running	 tcp://192.168.99.100:2376	     v17.04.0-ce
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $ GGGG You can ping the above 192.168.99.100 ip from MAC terminal to the docker.. BUT
+SUNDARA-M-20TX:mac-docker $ GGGG BUT You canNOT ping any newly created container from MAC
+
+SUNDARA-M-20TX:mac-docker $  docker-machine ip vbdev1
+192.168.99.100
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $  docker run -d -p 8000:80 nginx
+Unable to find image 'nginx:latest' locally
+latest: Pulling from library/nginx
+
+36a46ebd5019: Pulling fs layer
+57168433389f: Pulling fs layer
+Digest:8sha256:c15f1fb8fd55c60c72f940a76da76a5fccce2fefa0dd9b17967b9e40b035531621.193MB/1935B3MBB
+Status: Downloaded newer image for nginx:latest
+ba2112101d304d30ceaddc6f9e72b0088fae36502b663764b109a6ba42028d64
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $  docker images
+REPOSITORY	    TAG 		IMAGE ID	    CREATED		SIZE
+nginx		    latest		46102226f2fd	    6 days ago		109 MB
+busybox 	    latest		00f017a8c2a6	    7 weeks ago 	1.11 MB
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $  curl $(docker-machine ip default):8000
+Host does not exist: "default"
+curl: (7) Failed to connect to	port 8000: Connection refused
+SUNDARA-M-20TX:mac-docker $  curl $(docker-machine ip vbdev1):80000
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $  GGGGG  The above eval to set ENV for vbdev1 is important for each xterm session
+bash: GGGGG: command not found
+SUNDARA-M-20TX:mac-docker $  GGGGG  The above eval to set ENV for vbdev1 is important for each xterm session
+SUNDARA-M-20TX:mac-docker $  #GGGG  You should a * for active under docker-machine
+SUNDARA-M-20TX:mac-docker $
+
+Script done on Mon May	1 16:44:51 2017
+Script started on Mon May  1 07:40:16 2017
+SUNDARA-M-20TX:script_logs $  docker-machine -v
+docker-machine version 0.10.0, build 76ed2a6
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker-machine -v
+docker-machine version 0.10.0, build 76ed2a6
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker-machine ls
+NAME   ACTIVE	DRIVER	 STATE	 URL   SWARM   DOCKER	ERRORS
+SUNDARA-M-20TX:script_logs $  cd ../
+
+SUNDARA-M-20TX:mac-docker $  docker-machine create --driver virtualbox vbdev1
+Creating CA: /Users/sundara 1/.docker/machine/certs/ca.pem
+Creating client certificate: /Users/sundara 1/.docker/machine/certs/cert.pem
+Running pre-create checks...
+(vbdev1) Image cache directory does not exist, creating it at /Users/sundara 1/.docker/machine/cache...
+(vbdev1) No default Boot2Docker ISO found locally, downloading the latest release...
+(vbdev1) Latest release for github.com/boot2docker/boot2docker is v17.04.0-ce
+(vbdev1) Downloading /Users/sundara 1/.docker/machine/cache/boot2docker.iso from https://github.com/boot2docker/boot2docker/releases/download/v17.04.0-ce/boot2docker.iso...
+(vbdev1) 0%....10%....20%....30%....40%....50%....60%....70%....80%....90%....100%
+Creating machine...
+(vbdev1) Copying /Users/sundara 1/.docker/machine/cache/boot2docker.iso to /Users/sundara 1/.docker/machine/machines/vbdev1/boot2docker.iso...
+(vbdev1) Creating VirtualBox VM...
+(vbdev1) Creating SSH key...
+(vbdev1) Starting the VM...
+(vbdev1) Check network to re-create if needed...
+(vbdev1) Waiting for an IP...
+Waiting for machine to be running, this may take a few minutes...
+Detecting operating system of created instance...
+Docker is up and running!
+To see how to connect your Docker Client to the Docker Engine running on this virtual machine, run: docker-machine env vbdev1
+docker-machine:lsc-docker $  docker-machine create --driver virtualbox vbdev1
+NAME	 ACTIVE   DRIVER       STATE	 URL			     SWARM   DOCKER	   ERRORS
+vbdev1	 -	  virtualbox   Running	 tcp://192.168.99.100:2376	     v17.04.0-ce
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $  docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+SUNDARA-M-20TX:mac-docker $  docker ps -a
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $  docker-machine ls
+NAME	 ACTIVE   DRIVER       STATE	 URL			     SWARM   DOCKER	   ERRORS
+vbdev1	 -	  virtualbox   Running	 tcp://192.168.99.100:2376	     v17.04.0-ce
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $  docker-machine env dev1
+Host does not exist: "dev1"
+SUNDARA-M-20TX:mac-docker $  docker-machine env vbdev1
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.100:2376"
+export DOCKER_CERT_PATH="/Users/sundara 1/.docker/machine/machines/vbdev1"
+export DOCKER_MACHINE_NAME="vbdev1"
+# Run this command to configure your shell:
+# eval $(docker-machine env vbdev1)
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $ eval "$(docker-machine env vbdev1)"
+docker-machinemlsvidev1v1 vbdev1" "$docker-machineeenvvvbdev1")"
+NAME	 ACTIVE   DRIVER       STATE	 URL			     SWARM   DOCKER	   ERRORS
+vbdev1	 *	  virtualbox   Running	 tcp://192.168.99.100:2376	     v17.04.0-ce
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.100:2376"
+export DOCKER_CERT_PATH="/Users/sundara 1/.docker/machine/machines/vbdev1"
+export DOCKER_MACHINE_NAME="vbdev1"
+# Run this command to configure your shell:
+# eval $(docker-machine env vbdev1)
+SUNDARA-M-20TX:mac-docker $  docker-machine env vbdev1
+SUNDARA-M-20TX:mac-docker $  eval "$(docker-machine env vbdev1)"
+SUNDARA-M-20TX:mac-docker $
+ocker-machlsee:env-vbdev1 $  eval "$(docker-machine env vbdev1)"
+NAME	 ACTIVE   DRIVER       STATE	 URL			     SWARM   DOCKER	   ERRORS
+vbdev1	 *	  virtualbox   Running	 tcp://192.168.99.100:2376	     v17.04.0-ce
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $  docker-machine ip vbdev1
+192.168.99.100
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $  docker run -d -p 8000:80 nginx
+Unable to find image 'nginx:latest' locally
+latest: Pulling from library/nginx
+
+36a46ebd5019: Pulling fs layer
+57168433389f: Pulling fs layer
+Digest:8sha256:c15f1fb8fd55c60c72f940a76da76a5fccce2fefa0dd9b17967b9e40b035531621.193MB/1935B3MBB
+Status: Downloaded newer image for nginx:latest
+ba2112101d304d30ceaddc6f9e72b0088fae36502b663764b109a6ba42028d64
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $  docker images
+REPOSITORY	    TAG 		IMAGE ID	    CREATED		SIZE
+nginx		    latest		46102226f2fd	    6 days ago		109 MB
+busybox 	    latest		00f017a8c2a6	    7 weeks ago 	1.11 MB
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $  curl $(docker-machine ip default):8000
+Host does not exist: "default"
+curl: (7) Failed to connect to	port 8000: Connection refused
+SUNDARA-M-20TX:mac-docker $  curl $(docker-machine ip vbdev1):80000
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $  GGGGG  The above eval to set ENV for vbdev1 is important for each xterm session
+bash: GGGGG: command not found
+SUNDARA-M-20TX:mac-docker $  GGGGG  The above eval to set ENV for vbdev1 is important for each xterm session
+SUNDARA-M-20TX:mac-docker $  #GGGG  You should a * for active under docker-machine
+SUNDARA-M-20TX:mac-docker $
+
+Script done on Mon May	1 16:44:51 2017
+Script started on Mon May  1 16:51:55 2017
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker-machine ls
+NAME	 ACTIVE   DRIVER       STATE	 URL			     SWARM   DOCKER	   ERRORS
+vbdev1	 -	  virtualbox   Running	 tcp://192.168.99.100:2376	     v17.04.0-ce
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  grep eval log2_apr18.txt
+# eval $(docker-machine env vbdev1)
+SUNDARA-M-20TX:mac-docker $ eval "$(docker-machine env vbdev1)"
+# eval $(docker-machine env vbdev1)
+SUNDARA-M-20TX:mac-docker $  eval "$(docker-machine env vbdev1)"
+ocker-machlsee:env-vbdev1 $  eval "$(docker-machine env vbdev1)"
+SUNDARA-M-20TX:mac-docker $  GGGGG  The above eval to set ENV for vbdev1 is important for each xterm session
+SUNDARA-M-20TX:mac-docker $  GGGGG  The above eval to set ENV for vbdev1 is important for each xterm session
+# eval $(docker-machine env vbdev1)
+SUNDARA-M-20TX:mac-docker $ eval "$(docker-machine env vbdev1)"
+# eval $(docker-machine env vbdev1)
+SUNDARA-M-20TX:mac-docker $  eval "$(docker-machine env vbdev1)"
+ocker-machlsee:env-vbdev1 $  eval "$(docker-machine env vbdev1)"
+SUNDARA-M-20TX:mac-docker $  GGGGG  The above eval to set ENV for vbdev1 is important for each xterm session
+SUNDARA-M-20TX:mac-docker $  GGGGG  The above eval to set ENV for vbdev1 is important for each xterm session
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  eval "$(docker-machine env vbdev1)"
+SUNDARA-M-20TX:script_logs $
+docker-machine_lsr18.txtgs $  eval "$(docker-machine env vbdev1)"
+NAME	 ACTIVE   DRIVER       STATE	 URL			     SWARM   DOCKER	   ERRORS
+vbdev1	 *	  virtualbox   Running	 tcp://192.168.99.100:2376	     v17.04.0-ce
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  docker-machine stop vbdev1
+Stopping "vbdev1"...
+Machine "vbdev1" was stopped.
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $
+SUNDARA-M-20TX:script_logs $  cd ../
+SUNDARA-M-20TX:mac-docker $  ls
+dockfile_tut script_logs
+SUNDARA-M-20TX:mac-docker $  docker-machine ls
+NAME	 ACTIVE   DRIVER       STATE	 URL   SWARM   DOCKER	 ERRORS
+vbdev1	 -	  virtualbox   Stopped		       Unknown
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $
+SUNDARA-M-20TX:mac-docker $  ls
+dockfile_tut script_logs
+SUNDARA-M-20TX:mac-docker $  cd dockfile_tut/
+SUNDARA-M-20TX:dockfile_tut $  ls
+apache-dockerfile-ex1 apache-dockerfile-ex2 apache-dockerfile-ex3 apache-dockerfile-ex4 apache-dockerfile-ex5 index.html
+SUNDARA-M-20TX:dockfile_tut $
+SUNDARA-M-20TX:dockfile_tut $
+SUNDARA-M-20TX:dockfile_tut $  pwd
+/Users/sundara 1/Documents/2016/mac-docker/dockfile_tut
+SUNDARA-M-20TX:dockfile_tut $  cd ../
+SUNDARA-M-20TX:mac-docker $  ls
+dockfile_tut script_logs
+SUNDARA-M-20TX:mac-docker $  cd dockfile_tut/tut10_compose/
+SUNDARA-M-20TX:tut10_compose $	ls
+docker-compose.yml
+SUNDARA-M-20TX:tut10_compose $	catddocker-compose.yml
+web:
+	build: .
+	command: python app.py
+	ports:
+		- "5000:5000"
+	volumes:
+		- .:/code
+	links:
+		- redis
+	redis:
+		image:-redis
+
+
+
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker-machine -v
+docker-machine version 0.10.0, build 76ed2a6
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker-machine ls
+NAME	 ACTIVE   DRIVER       STATE	 URL   SWARM   DOCKER	 ERRORS
+vbdev1	 -	  virtualbox   Stopped		       Unknown
+SUNDARA-M-20TX:tut10_compose $	docker-machine start vbdev1
+Starting "vbdev1"...
+(vbdev1) Check network to re-create if needed...
+(vbdev1) Waiting for an IP...
+Machine "vbdev1" was started.
+Waiting for SSH to be available...
+Detecting the provisioner...
+Started machines may have new IP addresses. You may need to re-run the `docker-machine env` command.
+SUNDARA-M-20TX:tut10_compose $	docker-machine lsart vbdev1
+NAME	 ACTIVE   DRIVER       STATE	 URL			     SWARM   DOCKER	   ERRORS
+vbdev1	 *	  virtualbox   Running	 tcp://192.168.99.100:2376	     v17.04.0-ce
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	hi eval
+  426  eval "$docker-machine env vbdev1"
+  427  eval "$(docker-machine env vbdev1)"
+  445  eval "$(docker-machine env vbdev1)"
+  470  eval "$(docker-machine env vbdev1)"
+  471  GGGGG  The above eval to set ENV for vbdev1 is important for each xterm session
+  502  grep eval log2_apr18.txt
+  503  eval "$(docker-machine env vbdev1)"
+  523  hi eval
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	ls
+docker-compose.yml
+SUNDARA-M-20TX:tut10_compose $	cat docker-compose.yml
+web:
+	build: .
+	command: python app.py
+	ports:
+		- "5000:5000"
+	volumes:
+		- .:/code
+	links:
+		- redis
+	redis:
+		image:-redis
+
+
+
+SUNDARA-M-20TX:tut10_compose $	docker-compose up -d
+ERROR: yaml.scanner.ScannerError: while scanning for the next token
+found character '\t' that cannot start any token
+  in "./docker-compose.yml", line 2, column 1
+SUNDARA-M-20TX:tut10_compose $	catkdocker-compose.yml
+web:
+	build: .
+	command: python app.py
+	ports:
+		- "5000:5000"
+	volumes:
+		- .:/code
+	links:
+		- redis
+	redis:
+		image:-redis
+
+
+
+SUNDARA-M-20TX:tut10_compose $	docker-composeoup.-dl
+Pulling redis (redis:latest)...
+latest: Pulling from library/redis
+
+cd0a524342ef: Pulling fs layer
+2832b8d33a94: Pulling fs layer
+11ba129f304a: Pulling fs layer
+fa9bf5ac8bc6: Pulling fs layer
+6b5348ede0fa: Pulling fs layer
+e367ab303b30: Pulling fs layer
+Digest:fsha256:079a8abb332d42953d72040baeb7beae1585b2ca08502e154fc761d5b1a32ade 5.5396B/396B6MBB
+Status: Downloaded newer image for redis:latest
+Building web
+ERROR: Cannot locate specified Dockerfile: Dockerfile
+SUNDARA-M-20TX:tut10_compose $	pwd
+/Users/sundara 1/Documents/2016/mac-docker/dockfile_tut/tut10_compose
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	ls
+Dockerfile	   app.py	      docker-compose.yml requirements.txt
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker-compose ps
+Name   Command	 State	 Ports
+------------------------------
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker-compose up -d
+Building web
+Step 1/4 : FROM python:2.7
+2.7: Pulling from library/python
+
+cd0a524342ef: Already exists
+e39c3ffe4133: Pulling fs layer
+85334a7c2001: Pulling fs layer
+4c546d9d6a84: Pulling fs layer
+a2eb12d55dae: Pulling fs layer
+9f5ece3ce497: Pulling fs layer
+Digest:2sha256:c26eb79cb8334ecd8f63b65edfae0ab11912052ef4b6a45131abcc0224e99892 3.329MB/3.329MBB
+Status: Downloaded newer image for python:2.7
+ ---> eb03485f8ec8
+Step 2/4 : ADD ./code
+ERROR: Service 'web' failed to build: ADD requires at least two arguments
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker-imagsse up -d
+docker: 'imags' is not a docker command.
+See 'docker --help'
+SUNDARA-M-20TX:tut10_compose $	docker images
+REPOSITORY	    TAG 		IMAGE ID	    CREATED		SIZE
+python		    2.7 		eb03485f8ec8	    5 days ago		678 MB
+nginx		    latest		46102226f2fd	    6 days ago		109 MB
+redis		    latest		e32ef7250bc1	    6 days ago		184 MB
+busybox 	    latest		00f017a8c2a6	    7 weeks ago 	1.11 MB
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	vi docker-compose.yml
+Building web
+Step 1/4 : FROM python:2.7
+ ---> eb03485f8ec8
+SUNDARA-M-20TX:tut10_compose $	docker-compose ps -d
+	Name			  Command		State	  Ports
+-------------------------------------------------------------------------
+tut10compose_redis_1   docker-entrypoint.sh redis ...	Up	 6379/tcp
+tut10compose_web_1     python app.py			Exit 1
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $docker-composepupe-dml
+SUNDARA-M-20TX:tut10_compose $	ls
+Dockerfile	   app.py	      docker-compose.yml requirements.txt
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker ps -a
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+docker-compose:upt--buildo-d $	docker killa$(docker ps -aq) ; docker rm $(docker ps -aq)
+Building web
+Step 1/4 : FROM python:2.7
+ ---> eb03485f8ec8
+Step 2/4 : ADD . /code
+  Downloading MarkupSafe-1.0.tar.gz
+vbdev1	 *	  virtualbox   Running	 tcp://192.168.99.100:2376	     v17.04.0-ce
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker-psc-ane -v
+CONTAINER ID	    IMAGE		COMMAND 		 CREATED	     STATUS		 PORTS			  NAMES
+aa00ac8d5c03	    tut10compose_web	"python app.py" 	 50 seconds ago      Up 50 seconds	 0.0.0.0:5000->5000/tcp   tut10compose_web_1
+1e2e1be6c6ea	    redis		"docker-entrypoint..."	 51 seconds ago      Up 50 seconds	 6379/tcp		  tut10compose_redis_1
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	ls
+Dockerfile	   app.py	      docker-compose.yml requirements.txt
+SUNDARA-M-20TX:tut10_compose $	cat docker-compose.yml
+web:
+    build: .
+    command: python app.py
+    ports:
+	- "5000:5000"
+    volumes:
+	- .:/code
+    links:
+	- redis
+redis:
+    image: redis
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	cat Dockerfile
+FROM python:2.7
+ADD . /code
+WORKDIR /code
+RUN pip install -r requirements.txt
+SUNDARA-M-20TX:tut10_compose $	cat app.py
+from flask import Flask
+from redis import Redis
+import os
+app = Flask(__name__)
+redis = Redis(host='redis', port=6379)
+
+@app.route('/')
+def hello():
+    redis.incr('hits')
+    return 'Hello World! I have been seen %d times.' % redis.get('hits')
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", debug=True)
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	cat requirements.txt
+flask
+redis
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_codocker-composenps.txte.ymlild -d
+	Name			  Command		State		Ports
+--------------------------------------------------------------------------------------
+tut10compose_redis_1   docker-entrypoint.sh redis ...	Up	6379/tcp
+tut10compose_web_1     python app.py			Up	0.0.0.0:5000->5000/tcp
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker-machine ls
+NAME	 ACTIVE   DRIVER       STATE	 URL			     SWARM   DOCKER	   ERRORS
+vbdev1	 *	  virtualbox   Running	 tcp://192.168.99.100:2376	     v17.04.0-ce
+SUNDARA-M-20TX:tut10_compose $	docker-machine env
+SUNDARA-M-20TX:tut10_compose $	curl 192.168.99.100:5000
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	curl 192.168.99.100:5000
+Hello World! I have been seen 7 times.
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	curl 192.168.99.100:5000
+Hello World! I have been seen 8 times.
+SUNDARA-M-20TX:tut10_compose $	curl 192.168.99.100:5000
+Hello World! I have been seen 9 times.
+SUNDARA-M-20TX:tut10_compose $	curl 192.168.99.100:5000
+Hello World! I have been seen 10 times.
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker-compose logs
+Attaching to tut10compose_web_1, tut10compose_redis_1
+web_1	 |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+web_1	 |  * Restarting with stat
+web_1	 |  * Debugger is active!
+web_1	 |  * Debugger PIN: 221-441-168
+web_1	 | 192.168.99.1 - - [02/May/2017 00:27:54] "GET / HTTP/1.1" 200 -
+web_1	 | 192.168.99.1 - - [02/May/2017 00:27:55] "GET / HTTP/1.1" 200 -
+web_1	 | 192.168.99.1 - - [02/May/2017 00:27:56] "GET / HTTP/1.1" 200 -
+Hello World! I have been seen 11 times.
+SUNDARA-M-20TX:tut10_compose $	curl localhost:500000000
+curl: (7) Failed to connect to localhost port 5000: Connection refused
+SUNDARA-M-20TX:tut10_compose $	curl 192.168.99.100:5000
+Hello World! I have been seen 12 times.
+SUNDARA-M-20TX:tut10_compose $	docker-machine ps
+docker-machine: 'ps' is not a docker-machine command. See 'docker-machine --help'.
+SUNDARA-M-20TX:tut10_compose $	docker-machine ls
+NAME	 ACTIVE   DRIVER       STATE	 URL			     SWARM   DOCKER	   ERRORS
+vbdev1	 *	  virtualbox   Running	 tcp://192.168.99.100:2376	     v17.04.0-ce
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker-machine env vbdev1
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.100:2376"
+export DOCKER_CERT_PATH="/Users/sundara 1/.docker/machine/machines/vbdev1"
+export DOCKER_MACHINE_NAME="vbdev1"
+# Run this command to configure your shell:
+# eval $(docker-machine env vbdev1)
+SUNDARA-M-20TX:tut10_compose $	ping 192.168.99.100
+PING 192.168.99.100 (192.168.99.100): 56 data bytes
+64 bytes from 192.168.99.100: icmp_seq=0 ttl=64 time=0.261 ms
+64 bytes from 192.168.99.100: icmp_seq=1 ttl=64 time=0.342 ms
+^C
+--- 192.168.99.100 ping statistics ---
+2 packets transmitted, 2 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.261/0.301/0.342/0.041 ms
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker-machine9lsv0vbdev1
+NAME	 ACTIVE   DRIVER       STATE	 URL			     SWARM   DOCKER	   ERRORS
+vbdev1	 *	  virtualbox   Running	 tcp://192.168.99.100:2376	     v17.04.0-ce
+SUNDARA-M-20TX:tut10_compose $	docker-machine [s
+docker-machine: '[s' is not a docker-machine command. See 'docker-machine --help'.
+SUNDARA-M-20TX:tut10_compose $	docker-machine ps
+docker-machine: 'ps' is not a docker-machine command. See 'docker-machine --help'.
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker-compose ps
+	Name			  Command		State		Ports
+--------------------------------------------------------------------------------------
+tut10compose_redis_1   docker-entrypoint.sh redis ...	Up	6379/tcp
+tut10compose_web_1     python app.py			Up	0.0.0.0:5000->5000/tcp
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker-compose -v
+docker-compose version 1.11.2, build dfed245
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker-composeersion
+docker-compose version 1.11.2, build dfed245
+SUNDARA-M-20TX:tut10_compose $	docker-compose --version
+docker-compose version 1.11.2, build dfed245
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker -v
+Docker version 17.03.1-ce, build c6d412e
+SUNDARA-M-20TX:tut10_composedoc-vr-comp--versionbdev1o-d
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	vi docker-compose.yml
+"docker-compose.yml" 11L, 160Cweb:
+    build: .
+    command: python app.py
+    ports: - "5000:5000"
+    volumes: - .:/code
+    links: - redis
+redis:
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker-machine env vbdev1
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.100:2376"
+export DOCKER_CERT_PATH="/Users/sundara 1/.docker/machine/machines/vbdev1"
+export DOCKER_MACHINE_NAME="vbdev1"
+# Run this command to configure your shell:
+# eval $(docker-machine env vbdev1)
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+
+"compose-ex1.yml"R4L,:55Cqwritten
+SUNDARA-M-20TX:tut10_compose $	docker-composey-f compose-ex1.yml up -d
+WARNING: Found orphan containers (tut10compose_web_1, tut10compose_redis_1) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up.
+Pulling tomcatapp (tomcat:latest)...
+latest: Pulling from library/tomcat
+
+cd0a524342ef: Already exists
+e39c3ffe4133: Already exists
+aac3320edf40: Pulling fs layer
+4d9e109682f7: Pulling fs layer
+0a59efcf9553: Pulling fs layer
+43a404e523e0: Pulling fs layer
+806f07b1dce8: Pulling fs layer
+0cad96dccb4c: Pulling fs layer
+04073e2a9145: Pulling fs layer
+d9e4bf4be89c: Pulling fs layer
+739005fdecc9: Pulling fs layer
+8bd03d99f1b2: Pulling fs layer
+Digest:dsha256:88483873b279aaea5ced002c98dde04555584b66de29797a4476d5e94874e6de 89.128B/128BMBBB
+Status: Downloaded newer image for tomcat:latest
+Creating tut10compose_tomcatapp_1
+SUNDARA-M-20TX:tut10_compose $	docker ps
+CONTAINER ID	    IMAGE		COMMAND 		 CREATED	     STATUS		 PORTS			   NAMES
+3739306830a5	    tomcat		"catalina.sh run"	 3 seconds ago	     Up 2 seconds	 0.0.0.0:32768->8080/tcp   tut10compose_tomcatapp_1
+48a71f349ea5	    tut10compose_web	"python app.py" 	 16 minutes ago      Up 16 minutes	 0.0.0.0:5000->5000/tcp    tut10compose_web_1
+1e2e1be6c6ea	    redis		"docker-entrypoint..."	 21 minutes ago      Up 21 minutes	 6379/tcp		   tut10compose_redis_1
+SUNDARA-M-20TX:tut10_compose $	docker ps -a
+CONTAINER ID	    IMAGE		COMMAND 		 CREATED	     STATUS		 PORTS			   NAMES
+3739306830a5	    tomcat		"catalina.sh run"	 5 seconds ago	     Up 4 seconds	 0.0.0.0:32768->8080/tcp   tut10compose_tomcatapp_1
+48a71f349ea5	    tut10compose_web	"python app.py" 	 16 minutes ago      Up 16 minutes	 0.0.0.0:5000->5000/tcp    tut10compose_web_1
+1e2e1be6c6ea	    redis		"docker-entrypoint..."	 21 minutes ago      Up 21 minutes	 6379/tcp		   tut10compose_redis_1
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker kill redis
+Error response from daemon: Cannot kill container redis: No such container: redis
+SUNDARA-M-20TX:tut10_compose $	docker ps
+CONTAINER ID	    IMAGE		COMMAND 		 CREATED	     STATUS		 PORTS			   NAMES
+3739306830a5	    tomcat		"catalina.sh run"	 16 seconds ago      Up 15 seconds	 0.0.0.0:32768->8080/tcp   tut10compose_tomcatapp_1
+48a71f349ea5	    tut10compose_web	"python app.py" 	 16 minutes ago      Up 16 minutes	 0.0.0.0:5000->5000/tcp    tut10compose_web_1
+1e2e1be6c6ea	    redis		"docker-entrypoint..."	 21 minutes ago      Up 21 minutes	 6379/tcp		   tut10compose_redis_1
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+UNDARA-M-20TX:tut10_composee$pkill $(docker ps -aq) ; docker rm $(docker ps -aq)
+3739306830a5
+48a71f349ea5
+1e2e1be6c6ea
+3739306830a5
+48a71f349ea5
+1e2e1be6c6ea
+SUNDARA-M-20TX:tut10_compose $
+psN-aRA-M-20TX:tut10_compose $	docker kill $(docker ps -aq) ; docker rm $(docker ps -aq)
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		NAMES
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+-composei-f0compose-ex1.ymleup -docker killa$(docker ps -aq) ; docker rm $(docker ps -aq)
+Creating tut10compose_tomcatapp_1
+SUNDARA-M-20TX:tut10_compose $	docker ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		      NAMES
+d839eb164a2f	    tomcat		"catalina.sh run"   3 seconds ago	Up 2 seconds	    0.0.0.0:32769->8080/tcp   tut10compose_tomcatapp_1
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker-compose ps
+Name   Command	 State	 Ports
+------------------------------
+SUNDARA-M-20TX:tut10_compose $	docker-psmpose ps
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		      NAMES
+d839eb164a2f	    tomcat		"catalina.sh run"   38 seconds ago	Up 37 seconds	    0.0.0.0:32769->8080/tcp   tut10compose_tomcatapp_1
+SUNDARA-M-20TX:tut10_compose $	docker-compose -f compose-ex1.yml ps
+	  Name		       Command	     State	      Ports
+----------------------------------------------------------------------------
+tut10compose_tomcatapp_1   catalina.sh run   Up      0.0.0.0:32769->8080/tcp
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker-machine ps
+docker-machine: 'ps' is not a docker-machine command. See 'docker-machine --help'.
+SUNDARA-M-20TX:tut10_compose $	docker-machine ls compose-ex1.yml ps
+NAME	 ACTIVE   DRIVER       STATE	 URL			     SWARM   DOCKER	   ERRORS
+vbdev1	 *	  virtualbox   Running	 tcp://192.168.99.100:2376	     v17.04.0-ce
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	curl 192.168.99.100:32769
+<!DOCTYPE html>
+tomcatapp_1  | 02-May-2017 00:45:15.116 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 40143 ms
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	docker-compose -f compose-ex1.yml logs | head
+Attaching to tut10compose_tomcatapp_1
+tomcatapp_1  | 02-May-2017 00:44:34.751 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version:	 Apache Tomcat/8.5.14
+tomcatapp_1  | 02-May-2017 00:44:34.755 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built: 	 Apr 13 2017 12:55:45 UTC
+tomcatapp_1  | 02-May-2017 00:44:34.755 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server number:	 8.5.14.0
+tomcatapp_1  | 02-May-2017 00:44:34.755 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:		 Linux
+tomcatapp_1  | 02-May-2017 00:44:34.756 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:		 4.4.59-boot2docker
+tomcatapp_1  | 02-May-2017 00:44:34.756 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture: 	 amd64
+tomcatapp_1  | 02-May-2017 00:44:34.756 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:		 /usr/lib/jvm/java-8-openjdk-amd64/jre
+tomcatapp_1  | 02-May-2017 00:44:34.757 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:		 1.8.0_121-8u121-b13-1~bpo8+1-b13
+tomcatapp_1  | 02-May-2017 00:44:34.757 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:		 Oracle Corporation
+Traceback (most recent call last):
+  File "docker-compose", line 3, in <module>
+  File "compose/cli/main.py", line 64, in main
+  File "compose/cli/main.py", line 116, in perform_command
+  File "compose/cli/main.py", line 528, in logs
+  File "compose/cli/log_printer.py", line 99, in run
+IOError: [Errno 32] Broken pipe
+Failed to execute script docker-compose
+SUNDARA-M-20TX:tut10_compose $
+busybox 	    latest		00f017a8c2a6	    7 weeks ago 	1.11 MB
+nginx		    latest		46102226f2fd	    6 days ago		109 MB
+redis		    latest		e32ef7250bc1	    6 days ago		184 MB
+busybox 	    latest		00f017a8c2a6	    7 weeks ago 	1.11 MB
+SUNDARA-M-20TX:tut10_compose $	docker ps -a
+CONTAINER ID	    IMAGE		COMMAND 	    CREATED		STATUS		    PORTS		      NAMES
+d839eb164a2f	    tomcat		"catalina.sh run"   5 minutes ago	Up 5 minutes	    0.0.0.0:32769->8080/tcp   tut10compose_tomcatapp_1
+SUNDARA-M-20TX:tut10_compose $
+SUNDARA-M-20TX:tut10_compose $	exit
+exit
+
+Script done on Mon May	1 17:51:49 2017

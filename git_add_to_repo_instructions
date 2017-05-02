@@ -9,3 +9,11 @@
   532  cd ../../mac-git
   549  hi git
 
+  558  git add -A docker/
+  559  git status
+  560  git add git_add_to_repo_instructions 
+  561  git status
+  562  git commit -a -m "2nd"
+  563  git push origin master
+
+
